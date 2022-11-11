@@ -16,7 +16,9 @@
     "test-wait-debuger": "cross-env NODE_ENV=test PORT=8081 mocha --no-timeouts --exit --inspect-brk=0.0.0.0:9230"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.188",
     "express": "^4.17.2",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "ts-node": "^10.9.1"
   },

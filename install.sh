@@ -1,7 +1,15 @@
 #!/bin/bash
 
-CONTAINER=$1
+LANGUAGE=$1
 ACTION=$2
 PACKAGE=$3
 
-docker compose exec local-node -w /opt/node_app "$CONTAINER" npm "$ACTION" --save "$PACKAGE"
+case $LANGUAGE in
+  "js")
+    docker compose exec -w /opt/node_app local-node npm "$ACTION" --save "$PACKAGE"
+    ;;
+  "python")
+    echo "TBD"
+    ;;
+esac
+
