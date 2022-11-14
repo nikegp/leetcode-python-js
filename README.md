@@ -12,10 +12,19 @@ To validate/execute a given solution
 ```
 
 The ID can be anything, and it's a folder with the solution, although I use LeetCode challenge id here.
+To bootstrap files & folders for a new challenge run 
+
+```
+./prepare-challenge.sh {URL} {ID}
+```
+For example, 
+```
+./prepare-challenge.sh https://leetcode.com/problems/reverse-words-in-a-string/ 151
+```
 
 ### Tech stack
 Python 3.10, Javascript/TypeScript.
-Python is formatted with Black, JS with Prettier.
+Python is formatted with Black while JS is formatted with Prettier.
 
 ### Package management
 
