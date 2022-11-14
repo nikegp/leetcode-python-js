@@ -46,7 +46,18 @@ mkdir "$FOLDER"
 mkdir "$FOLDER/python"
 mkdir "$FOLDER/js"
 
-echo "#!/usr/bin/env python\n" > "$FOLDER/python/solution.py"
+echo "#!/usr/bin/env python\n\n " > "$FOLDER/python/solution.py"
+cat > "$FOLDER/python/solution.py" << EOL
+#!/usr/bin/env python
+from challenges.utils import expect
+
+
+if __name__ == "__main__":
+    pass
+    # expect(SOLUTION_CALL, EXPECTED_OUTPUT)
+EOL
+
+
 chmod +x "$FOLDER/python/solution.py"
 
 echo "" > "$FOLDER/js/solution.ts"
