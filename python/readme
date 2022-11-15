@@ -1,1 +1,0 @@
-clear; docker run --rm -v /opt/projects/python/:/app mypython python /app/main.py
