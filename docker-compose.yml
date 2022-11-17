@@ -1,9 +1,4 @@
-# version: '2.4'
-# versions no longer needed for compose CLI use (as of 2020)
-# If using swarm, you'll still need version 3.9
-
 services:
-
   local-node:
     container_name: local-node-container
     build:
@@ -48,5 +43,33 @@ services:
     volumes:
       - ./challenges:/app/challenges
 
+  pg-db:
+    image: postgres:15.1
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg-db:/var/lib/postgresql/data
+
+  mysql-db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-db:/var/lib/mysql
+
 volumes:
   notused:
+  pg-db:
+    driver: local
+  mysql-db:
+    driver: local

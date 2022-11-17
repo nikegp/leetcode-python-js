@@ -2,13 +2,15 @@
 
 CHALLENGE_URL=$1
 CHALLENGE_ID=$2
+CHALLENGE_TYPE=$3
 
 display_help()
 {
    # Display Help
    echo "Bootstrap files & folders for a new challenge"
    echo
-   echo "Syntax: ./prepare-challenge.sh [-h] {CHALLENGE_URL} {CHALLENGE_ID}"
+   echo "Syntax: ./prepare-challenge.sh [-h] {CHALLENGE_URL} {CHALLENGE_ID} {CHALLENGE_TYPE}"
+   echo "{CHALLENGE_TYPE} is optional, defaults to 'code'. To init a db change pass 'db'."
    echo
 }
 
@@ -43,11 +45,17 @@ if [ -d "$FOLDER" ]; then
 fi
 
 mkdir "$FOLDER"
-mkdir "$FOLDER/python"
-mkdir "$FOLDER/js"
 
-echo "#!/usr/bin/env python\n\n " > "$FOLDER/python/solution.py"
-cat > "$FOLDER/python/solution.py" << EOL
+if [[ "$CHALLENGE_TYPE" == "db" ]]; then
+  mkdir "$FOLDER/db"
+  echo "" > "$FOLDER/db/solution.sql"
+  echo "" > "$FOLDER/db/ddl.sql"
+else
+  mkdir "$FOLDER/python"
+  mkdir "$FOLDER/js"
+
+  echo "#!/usr/bin/env python\n\n " > "$FOLDER/python/solution.py"
+  cat > "$FOLDER/python/solution.py" << EOL
 #!/usr/bin/env python
 from challenges.utils import expect
 
@@ -57,10 +65,11 @@ if __name__ == "__main__":
     # expect(SOLUTION_CALL, EXPECTED_OUTPUT)
 EOL
 
+  chmod +x "$FOLDER/python/solution.py"
 
-chmod +x "$FOLDER/python/solution.py"
+  echo "" > "$FOLDER/js/solution.ts"
+fi
 
-echo "" > "$FOLDER/js/solution.ts"
 echo "$CHALLENGE_URL" > "$FOLDER/description.md"
 
 echo "Done! Good luck with the challenge!"
