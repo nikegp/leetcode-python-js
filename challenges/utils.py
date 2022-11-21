@@ -1,8 +1,10 @@
 def expect(a, b):
-    if a == b:
-        print("Passed: ", a, " == ", b)
+    if type(a) != type(b):
+        print(f"TYPES MISSMATCH! Received {type(a)} while expecting {type(b)}")
+    elif a == b:
+        print(f"Passed: '{a}' == '{b}'")
     else:
-        print("Failed: got ", a, " while expecting ", b)
+        print(f"Failed: got '{a}' while expecting '{b}'")
 
 
 class TreeNode:

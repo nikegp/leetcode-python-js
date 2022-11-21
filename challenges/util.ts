@@ -6,9 +6,9 @@ export const expect = (a: any, b: any) => {
     a = listNodesToList(a);
   }
   if (isEqual(a, b)) {
-    console.log(`PASSED ${a} === ${b}`);
+    console.log(`PASSED '${a}' === '${b}'`);
   } else {
-    console.log(`Mismatch! ${a} !== ${b}`);
+    console.log(`Mismatch! '${a}' !== '${b}'`);
   }
 };
 
