@@ -61,8 +61,8 @@ from challenges.utils import expect
 
 
 if __name__ == "__main__":
-    pass
-    # expect(SOLUTION_CALL, EXPECTED_OUTPUT)
+    obj = Solution()
+    expect(obj.fun(), EXPECTED_OUTPUT)
 EOL
 
   chmod +x "$FOLDER/python/solution.py"
