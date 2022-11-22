@@ -5,10 +5,14 @@ export const expect = (a: any, b: any) => {
   if (a && a?.constructor === ListNode) {
     a = listNodesToList(a);
   }
+
+  const quoteA = typeof a === "string" || a instanceof String ? "'" : "";
+  const quoteB = typeof b === "string" || b instanceof String ? "'" : "";
+
   if (isEqual(a, b)) {
-    console.log(`PASSED '${a}' === '${b}'`);
+    console.log(`PASSED ${quoteA}${a}${quoteA} === ${quoteB}${b}${quoteB}`);
   } else {
-    console.log(`Mismatch! '${a}' !== '${b}'`);
+    console.log(`Mismatch! ${quoteA}${a}${quoteA} !== ${quoteB}${b}${quoteB}`);
   }
 };
 
